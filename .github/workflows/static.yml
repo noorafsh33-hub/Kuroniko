@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You My Nikoo</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #fbeaea, #fdeff4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+    
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      color: #a880a5;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: #db94d5;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #8b6f8b;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #db94d5;
+      display: none;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+  
+    .pics {
+      margin-top: 18px;
+      display: none;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .flip-card {
+      width: 110px;
+      height: 110px;
+      perspective: 900px;
+    }
+
+    .flip-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform .7s;
+      transform-style: preserve-3d;
+      border-radius: 18px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.12);
+      cursor: pointer;
+    }
+
+    .flip-card.flipped .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .back {
+      background: #db94d5;
+      color: white;
+      font-size: 16px;
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>COME CLOSER SENPAI </h1>
+
+  <p>
+    I just wanted you to know
+    that you my only one.
+  </p>
+
+  <button onclick="showLove()">Click me</button>
+
+  <div class="message" id="loveMessage">
+    loobe you my husbanduu 🤍
+  </div>
+
+
+  <div class="pics" id="cutePics">
+
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="front">
+          <img src="sec.png">
+        </div>
+        <div class="back">
+           Best duo🤍
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="front">
+          <img src="frist.png">
+        </div>
+        <div class="back">
+          You & Me 
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function showLove() {
+    document.getElementById("loveMessage").style.display = "block";
+    createHearts();
+
+    const picsBox = document.getElementById("cutePics");
+    picsBox.style.display = "flex";
+
+    picsBox.querySelectorAll(".flip-card").forEach(card => {
+      card.onclick = () => card.classList.toggle("flipped");
+    });
+
+    
+   
+  }
+
+  function createHearts() {
+    for (let i = 0; i < 15; i++) {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "🤍";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }
+  }
+</script>
+
+</body>
+</html>
